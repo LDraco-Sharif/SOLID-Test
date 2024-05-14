@@ -1,5 +1,6 @@
 ﻿using SOLID_Test.DIP;
 using SOLID_Test.DIP.PaymentAdapters;
+using SOLID_Test.ISP;
 using SOLID_Test.LSP;
 using SOLID_Test.OCP;
 using SOLID_Test.SRP;
@@ -30,29 +31,38 @@ emailService.SendMessage(message);
 
 Console.WriteLine("\n");
 
+
 //Liskov Substitution Principle
 
-//Enemy enemy = new Swordsman("Swords1");
+Sequence sq = new Sequence();
+var val1 = sq.ReturnSequence();
+Console.WriteLine("Value: " + val1.GetType().GetProperty("value")?.GetValue(val1, null));
+
+Sequence sq2 = new RandomSequence();
+var val2 = sq2.ReturnSequence();
+Console.WriteLine("Value: " + val2.GetType().GetProperty("value")?.GetValue(val2, null)); //Doesn't work
+
+
+
+
+//Interface Segregation Principle
+
+//IEnemy enemy = new Swordsman("Swords1");
 //enemy.Move(); //No issue here
 //enemy.Attack();
 
-//Enemy enemy = new Turret("Turret1");
+//IEnemy enemy = new Turret("Turret1");
 //enemy.Move(); //Cannot actually implement it
 //enemy.Attack();
 
-Enemy enemy = new Turret("Turret1");
+IEnemy enemy = new Turret("Turret1");
 enemy.Attack();
 
-MovingEnemy movingEnemy = new Swordsman("Swords1");
+IMovingEnemy movingEnemy = new Swordsman("Swords1");
 movingEnemy.Attack();
 movingEnemy.Move();
 
 Console.WriteLine("\n");
-
-//
-
-
-
 
 
 //Dependency Inversion Principle

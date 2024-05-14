@@ -6,18 +6,19 @@ using System.Threading.Tasks;
 
 namespace SOLID_Test.LSP
 {
-    public class Turret : Enemy
+    public class Turret : IEnemy
     {
-        public Turret(string name) : base(name)
+        private readonly string _name;
+        public Turret(string name)
         {
+            _name = name;
+        }
+        public void Attack()
+        {
+            Console.WriteLine(_name + ": Shoots player from afar");
         }
 
-        public override void Attack()
-        {
-            Console.WriteLine(name + ": Shoots player from afar");
-        }
-
-        //public override void Move()
+        //public void Move()
         //{
         //    Console.WriteLine("Error:" + name + " cannot actually move");
         //}
